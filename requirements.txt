@@ -1,0 +1,2 @@
+minimalmodbus>=0.7
+py-zabbix>=1.1.5
