@@ -39,55 +39,6 @@ Protocol
 --------
 [Protocol](http://www.solar-elektro.cz/data/dokumenty/1733_modbus_protocol.pdf)
 
-Python module
--------------
-A simple script found in [dashing/jobs](dashing/jobs/getRegistery.py) will read a specific register from the solar charger. You can use this to test that your driver is working. Before running be sure to install the [Minimal Modbus](https://github.com/pyhys/minimalmodbus) python library.
-Run the script like so:
-`python getRegister.py 0x3100`
-The script will return 0 if there is any kind of error.
-
-The file `logsolar.py` will query the solar controller for relevant data and log it to a mysql database. You will need to update the file to point to your mysql db.
-Uses [Minimal Modbus](https://github.com/pyhys/minimalmodbus) and mysqldb libraries
-
-Setting up a cron job to run this script regularly is advisable if you intend to setup a dashboard.
-To set up a cron job:
-First make `logsolar.py` and executable file:
-`sudo chmod +x logsolar.py`
-
-Now add the cron job:
-`crontab -e`
-`*/5 * * * * /PATHTOREPO/logsolar.py`
-
-Dashing.io Dashboard
---------------------
-![Img](img/IMG_2011.png)
-The Dashing folder contains everything needed to setup a dashboard to monitor realtime and historical solar charging data. Install dashing and created a new project, then copy the files from the dashing folder into your new dashing project. The path to the phython script in /jobs/ will need to be changed.
-
-Starting Raspberry Pi as a Local Network + Web Service
-------------------------------------------------------
-
-Do the first part of this tutorial. Dont worry about network bridging unless you are doing this for your house and want the raspberry to be connected to the net.
-https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md
-
-Comment out any "NETWORK={" entries in /etc/wpa_supplicant/wpa_supplicant.conf
-Be sure to hard reboot after running. A soft reboot does not start up the lotal network. From a [tip here](https://www.raspberrypi.org/forums/viewtopic.php?t=208664)
-
-Next we need to setup port forwarding to forward port 80 to the port Dashing runs on. Usually 3030
-Add these lines at the end o f `/etc/rc.local`
-```
-# Forward port 80 to 3030 (where our web server is) so the
-# web server can run at normal permissions
-iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3030
-```
-
-Follow this to start Dashing on Boot. This works with ruby 2.3+
-https://gist.github.com/gregology/5313326
-
-If you want to change your hostname, or the address you will put into a web browser, follow this.
-https://www.howtogeek.com/167195/how-to-change-your-raspberry-pi-or-other-linux-devices-hostname/
-
-Now you should be able to connect to your raspberry pi, open a web browser and enter `hostname.local` to open your dashboard!
-
 Cheers!
 
 
