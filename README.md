@@ -1,5 +1,5 @@
-# epsolar-tracer
-Tools for Connecting Tracer BN Solar Charger to Raspberry Pi with Python via rs485
+# zabbix-epsolar-tracer
+Tools for Connecting Tracer BN Solar Charger to Raspberry Pi with Python via rs485 and send to zabbix via sender protocol
 ===================================================
 
 This is how I setup a  Raspberry Pi with  a RS485 adapter to track statistics from a Tracer 4215BN Solar Charger. This should work with any of the tracer BN series charge controllers.
