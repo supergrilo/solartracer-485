@@ -6,14 +6,14 @@ import sys
 
 from pyzabbix import ZabbixMetric, ZabbixSender
 
-hostname = socket.gethostname()
+hostname = sys.argv[2]
 packet =[]
 
 def readNumberAndSaveToTable(instrument, address, table):
 	global packet
 	try:
                 reading = instrument.read_register(address, 2, 4)
-                packet.append([ZabbixMetric(hostname, table, str(reading))])
+                packet.append(ZabbixMetric(hostname, table, str(reading)))
 	except IOError:
 		print("Failed to read from instrument")
 
