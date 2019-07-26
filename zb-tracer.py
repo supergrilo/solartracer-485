@@ -46,5 +46,5 @@ readNumberAndSaveToTable(instrument, 0x310D, "load_amps")
 readNumberAndSaveToTable(instrument, 0x3304, "daily_kw_used")
 readNumberAndSaveToTable(instrument, 0x330C, "daily_kw_generated")
 
-print(packet)
-#result = ZabbixSender(use_config=True).send(packet)
+#print(packet)
+result = ZabbixSender(use_config=True).send(packet)
