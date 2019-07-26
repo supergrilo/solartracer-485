@@ -30,8 +30,8 @@ instrument.mode = minimalmodbus.MODE_RTU
 readNumberAndSaveToTable(instrument, 0x3104, "battery_voltage")
 readNumberAndSaveToTable(instrument, 0x3105, "battery_amps")
 readNumberAndSaveToTable(instrument, 0x311B, "temperature")
-readNumberAndSaveToTable(instrument, 0x3200, "batt_status")
-readNumberAndSaveToTable(instrument, 0x311A, "batt_remain")
+readNumberAndSaveToTable(instrument, 0x3200, "battery_status")
+readNumberAndSaveToTable(instrument, 0x311A, "battery_remain")
 
 #Solar
 
